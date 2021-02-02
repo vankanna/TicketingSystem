@@ -1,0 +1,16 @@
+C:\Users\Sumin\Desktop\DotNetDb\TicketingSystem\obj\Debug\net5.0\TicketingSystem.csprojAssemblyReference.cache
+C:\Users\Sumin\Desktop\DotNetDb\TicketingSystem\obj\Debug\net5.0\TicketingSystem.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Sumin\Desktop\DotNetDb\TicketingSystem\obj\Debug\net5.0\TicketingSystem.AssemblyInfoInputs.cache
+C:\Users\Sumin\Desktop\DotNetDb\TicketingSystem\obj\Debug\net5.0\TicketingSystem.AssemblyInfo.cs
+C:\Users\Sumin\Desktop\DotNetDb\TicketingSystem\obj\Debug\net5.0\TicketingSystem.csproj.CoreCompileInputs.cache
+C:\Users\Sumin\Desktop\DotNetDb\TicketingSystem\bin\Debug\net5.0\TicketingSystem.exe
+C:\Users\Sumin\Desktop\DotNetDb\TicketingSystem\bin\Debug\net5.0\TicketingSystem.deps.json
+C:\Users\Sumin\Desktop\DotNetDb\TicketingSystem\bin\Debug\net5.0\TicketingSystem.runtimeconfig.json
+C:\Users\Sumin\Desktop\DotNetDb\TicketingSystem\bin\Debug\net5.0\TicketingSystem.runtimeconfig.dev.json
+C:\Users\Sumin\Desktop\DotNetDb\TicketingSystem\bin\Debug\net5.0\TicketingSystem.dll
+C:\Users\Sumin\Desktop\DotNetDb\TicketingSystem\bin\Debug\net5.0\ref\TicketingSystem.dll
+C:\Users\Sumin\Desktop\DotNetDb\TicketingSystem\bin\Debug\net5.0\TicketingSystem.pdb
+C:\Users\Sumin\Desktop\DotNetDb\TicketingSystem\obj\Debug\net5.0\TicketingSystem.dll
+C:\Users\Sumin\Desktop\DotNetDb\TicketingSystem\obj\Debug\net5.0\ref\TicketingSystem.dll
+C:\Users\Sumin\Desktop\DotNetDb\TicketingSystem\obj\Debug\net5.0\TicketingSystem.pdb
+C:\Users\Sumin\Desktop\DotNetDb\TicketingSystem\obj\Debug\net5.0\TicketingSystem.genruntimeconfig.cache
