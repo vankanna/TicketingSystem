@@ -1,5 +1,0 @@
-enum Status
-    {
-        Open,
-        Closed
-    }
