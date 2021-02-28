@@ -54,14 +54,17 @@ namespace TicketingSystem
             if (File.Exists(this.fileName))
             {
                 StreamWriter sw = new StreamWriter(this.fileName);
-                foreach (var ticket in this.Tickets) {
-                        sw.WriteLine(ticket.formatTicket());
+                sw.WriteLine(this.headers);
+                foreach (var ticket in this.Tickets)
+                {
+                    sw.WriteLine(ticket.formatTicket());
                 }
                 sw.Close();
             }
         }
 
         public void listTickets() {
+            Console.WriteLine("\n" + this.headers);
             foreach (var ticket in this.Tickets) {
                         Console.WriteLine(ticket.formatTicket());
                 }
