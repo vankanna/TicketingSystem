@@ -8,26 +8,24 @@ namespace TicketingSystem
         public string software {get; set;}
         public int cost {get; set;} 
         public string reason {get; set;}
-        public string estmate {get; set;}
+        public string estimate {get; set;}
 
-        public EnhancementTicket(
-            int ticketId,
-            string summary,
-            string status,
-            string priority,
-            string submitter,
-            string assigned,
-            List<string> watchers,
-            string software,
-            int cost,
-            string reson,
-            string estmate) : base (ticketId, summary, status, priority, submitter, assigned, watchers)
+        public override string formatTicket()
         {
-            this.software = software;
-            this.cost = cost;
-            this.reason = reason;
-            this.estmate = estmate;
+            string watchersString = string.Join("|", this.watchers.ToArray());
+            return this.ticketId +
+            "," + this.summary +
+            "," + this.status +
+            "," + this.priority +
+            "," + this.submitter +
+            "," + this.assigned +
+            "," + watchersString +
+            "," + this.software +
+            "," + this.cost +
+            "," + this.reason +
+            "," + this.estimate;
         }
+        
 
     }
 }

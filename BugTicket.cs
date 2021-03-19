@@ -6,20 +6,19 @@ namespace TicketingSystem
     {
 
         public string severity {get; set;}
-         public BugTicket (
-            int ticketId,
-            string summary,
-            string status,
-            string priority,
-            string submitter,
-            string assigned,
-            List<string> watchers,
-            string severity) : base (ticketId, summary, status, priority, submitter, assigned, watchers)
+         
+        public override string formatTicket()
         {
-           this.severity = severity;
+            string watchersString = string.Join("|", this.watchers.ToArray());
+            return this.ticketId +
+            "," + this.summary +
+            "," + this.status +
+            "," + this.priority +
+            "," + this.submitter +
+            "," + this.assigned +
+            "," + watchersString +
+            "," + this.severity;
         }
-
-        
 
     }
 }

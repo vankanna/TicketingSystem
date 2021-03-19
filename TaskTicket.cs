@@ -6,18 +6,19 @@ namespace TicketingSystem
     {
         public string projectName {get; set;}
         public string dueDate {get; set;}
-         public TaskTicket (
-            int ticketId,
-            string summary,
-            string status,
-            string priority,
-            string submitter,
-            string assigned,
-            List<string> watchers,
-            string projectName,
-            string dueDate ) : base ( ticketId, summary, status, priority, submitter, assigned, watchers)
+
+        public override string formatTicket()
         {
-           
+            string watchersString = string.Join("|", this.watchers.ToArray());
+            return this.ticketId +
+            "," + this.summary +
+            "," + this.status +
+            "," + this.priority +
+            "," + this.submitter +
+            "," + this.assigned +
+            "," + watchersString +
+            "," + this.projectName +
+            "," + this.dueDate;
         }
     }
 }
