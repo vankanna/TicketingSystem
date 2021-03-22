@@ -1,2 +1,3 @@
 TicketID, Summary, Status, Priority, Submitter, Assigned, Watching, Software, Cost, Reason
-1, task ticket createion, Open, High, Sumin, Sumin, Sumin|Matthew, C#, 4.00, midterm
+1, task ticket createion, Open, High, Sumin, Sumin, Sumin|Matthew, C#,4, midterm,
+2,Task Manager,Closed,Low,Sumin,Sumin,Sumin|Matthew,vscode,40,for fun,
