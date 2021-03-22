@@ -23,7 +23,7 @@ namespace TicketingSystem
             return this.ticketId + "," + this.summary + "," + this.status + "," + this.priority + "," + this.submitter + "," + this.assigned + "," + watchersString;
         }
 
-        public static void createTicket() {
+        public static object createTicket() {
             Console.WriteLine("Enter a summary");                        
             string summary = Console.ReadLine();
             Console.WriteLine("Enter the status (Open/Closed)");
@@ -39,6 +39,14 @@ namespace TicketingSystem
             string watching = Console.ReadLine();
             // while loop to add more
             watchers.Add(watching);
+            
+            return new object();
         }
+        public List<string> createWatchersFromString(string watchers) {
+            string[] watchersArry = watchers.Split('|');
+            List<string> watchersList = new List<string>(watchersArry);
+            return watchersList;
+        }
+
     }
 }

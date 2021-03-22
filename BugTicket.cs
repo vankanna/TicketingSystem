@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace TicketingSystem
 {
-    class BugTicket: Ticket
+    public class BugTicket: Ticket
     {
 
         public string severity {get; set;}

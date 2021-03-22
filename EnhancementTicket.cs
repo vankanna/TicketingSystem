@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace TicketingSystem
 {
-    class EnhancementTicket : Ticket
+    public class EnhancementTicket : Ticket
 
     {
         public string software {get; set;}

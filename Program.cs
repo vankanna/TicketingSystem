@@ -9,7 +9,7 @@ namespace TicketingSystem
         static void Main(string[] args)
         {
             
-            TicketManager<TaskTicket> manager = new TicketManager<TaskTicket>("Tickets.csv");
+            TicketManager<TaskTicket> manager = new TicketManager<TaskTicket>("Tickets.csv", typeof(TaskTicket));
             manager.loadTicketsFromFile();
 
               string choice;

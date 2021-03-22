@@ -4,10 +4,10 @@ using System.Collections.Generic;
 
 namespace TicketingSystem
 {
-    class TaskTicket : Ticket
+    public class TaskTicket : Ticket
     {
         public string projectName {get; set;}
-        public string dueDate {get; set;}
+        public DateTime dueDate {get; set;}
 
         public override string formatTicket()
         {
@@ -44,7 +44,7 @@ namespace TicketingSystem
             
             Console.WriteLine("Enter a project name");                        
             string projectName = Console.ReadLine();
-            Console.WriteLine("Enter a due date");                        
+            Console.WriteLine("Enter a due date, ( 3/21/2021 )");                        
             string dueDate = Console.ReadLine();
             TaskTicket taskTicket = new TaskTicket();
             taskTicket.ticketId = ticketId;
@@ -55,7 +55,25 @@ namespace TicketingSystem
             taskTicket.assigned = assigned;
             taskTicket.watchers = watchers;
             taskTicket.projectName = projectName;
-            taskTicket.dueDate = dueDate;
+            taskTicket.dueDate = DateTime.Parse(dueDate);;
+
+            return taskTicket;
+        }
+
+        public object createTicketFromFile(string line) {
+            TaskTicket taskTicket = new TaskTicket();
+            string[] fieldsArr = line.Split(',');
+
+            taskTicket.ticketId = Int32.Parse(fieldsArr[0]);
+            taskTicket.summary = fieldsArr[1];
+            taskTicket.status = fieldsArr[2];
+            taskTicket.priority = fieldsArr[3];
+            taskTicket.submitter = fieldsArr[4];
+            taskTicket.assigned = fieldsArr[5];
+            taskTicket.watchers = this.createWatchersFromString(fieldsArr[6]);
+            taskTicket.projectName = fieldsArr[7];
+            taskTicket.dueDate = DateTime.Parse(fieldsArr[7]);
+
 
             return taskTicket;
         }

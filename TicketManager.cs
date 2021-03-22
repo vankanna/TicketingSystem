@@ -5,41 +5,56 @@ using System.Collections.Generic;
 
 namespace TicketingSystem
 {
-    class TicketManager
+    public class TicketManager
     {
-        List Tickets = new List();
-        string fileName;
-        string headers;
+        public List<BugTicket> bugTickets = new List<BugTicket>();
+        public List<TaskTicket> taskTickets = new List<TaskTicket>();
+        public List<EnhancementTicket> enhancmentTickets = new List<EnhancementTicket>();
 
-        public TicketManager(string fileName) 
+        string fileName;
+        string bugHeaders;
+        string taskHeaders;
+        string enhancementHeaders;
+
+
+        public TicketManager (string fileName)
         {
             this.fileName = fileName;
         }
 
-        public void loadTicketsFromFile()
+        public void loadTicketsFromFile(string ticketType, string filename)
         {
-            if (File.Exists(this.fileName))
+            if (File.Exists(filename))
             {
-                StreamReader sr1 = new StreamReader(this.fileName);
+                StreamReader sr1 = new StreamReader(filename);
                 Boolean firstLine = true;
                 while (!sr1.EndOfStream)
                 {
 
                     string line = sr1.ReadLine();
                     if(firstLine) {
-                        this.headers = line;
+
+                        if (ticketType == "bugTicket") {
+                            this.bugHeaders = line;
+                        } else if (ticketType == "taskTicket") {
+                            this.taskHeaders = line;
+                        } else if (ticketType == "enhancementTicket") {
+                            this.enhancementHeaders = line;
+                        } else {
+
+                        }
                         firstLine = false;
-                    } else {
-                    string[] arr = line.Split(',');
-        
-                        this.Tickets.Add(new Ticket(
-                            Int32.Parse(arr[0]),
-                            arr[1],
-                            arr[2],
-                            arr[3],
-                            arr[4],
-                            arr[5],
-                            this.createWatchersFromString(arr[6])));
+                    } else {                        
+                        if (ticketType == "bugTicket") {
+                            BugTicket.createTicketFromFile(line);
+                        } else if (ticketType == "taskTicket") {
+                            TaskTicket.createTicketFromFile(line)
+                        } else if (ticketType == "enhancementTicket") {
+                            EnhancementTicket.createTicketFromFile(line)
+                        } else {
+
+                        }
+                        //this.tickets.Add();
                     }
                 }
                 sr1.Close();
@@ -74,35 +89,7 @@ namespace TicketingSystem
        
 
         public void createTicket() {
-
-            bool ask = true;
-
-            while(ask) {
-                ask = false;
-                Console.WriteLine("Please choose ticket type:\n 1. Bug\n 2. Task\n 3. Enhancment");
-                string choice = Console.ReadLine();
-
-                
-                
-
-                if ( choice == "1") {
-                    ask = false;
-                    //this.Tickets[this.Tickets.Count - 1].ticketId + 1;
-                    this.Tickets.Add(bugTicket);
-                } else if (choice == "2") {
-                    ask = false;
-                    
-                    this.Tickets.Add(taskTicket);
-                } else if (choice == "3") {
-                    ask = false;
-                    
-                    this.Tickets.Add(enhancementTicket);
-
-                } else {
-                    ask = true;
-                }
-            }
-             
+            this.Tickets.Add(T.createTicket(this.Tickets[this.Tickets.Count - 1].ticketId + 1));
         }
 
         public List<string> createWatchersFromString(string watchers) {
