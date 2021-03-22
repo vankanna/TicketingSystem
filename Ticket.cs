@@ -23,25 +23,25 @@ namespace TicketingSystem
             return this.ticketId + "," + this.summary + "," + this.status + "," + this.priority + "," + this.submitter + "," + this.assigned + "," + watchersString;
         }
 
-        public static object createTicket() {
-            Console.WriteLine("Enter a summary");                        
-            string summary = Console.ReadLine();
-            Console.WriteLine("Enter the status (Open/Closed)");
-            string status = Console.ReadLine();
-            Console.WriteLine("Enter the priority (Low/Medium/High)");   
-            string priority = Console.ReadLine();
-            Console.WriteLine("Enter the submitter");
-            string submitter = Console.ReadLine();
-            Console.WriteLine("Enter the assigned");
-            string assigned = Console.ReadLine();
-            Console.WriteLine("Enter the watching");
-            List<string> watchers = new List<string>();
-            string watching = Console.ReadLine();
-            // while loop to add more
-            watchers.Add(watching);
+        // public static object createTicket() {
+        //     Console.WriteLine("Enter a summary");                        
+        //     string summary = Console.ReadLine();
+        //     Console.WriteLine("Enter the status (Open/Closed)");
+        //     string status = Console.ReadLine();
+        //     Console.WriteLine("Enter the priority (Low/Medium/High)");   
+        //     string priority = Console.ReadLine();
+        //     Console.WriteLine("Enter the submitter");
+        //     string submitter = Console.ReadLine();
+        //     Console.WriteLine("Enter the assigned");
+        //     string assigned = Console.ReadLine();
+        //     Console.WriteLine("Enter the watching");
+        //     List<string> watchers = new List<string>();
+        //     string watching = Console.ReadLine();
+        //     // while loop to add more
+        //     watchers.Add(watching);
             
-            return new object();
-        }
+        //     return new object();
+        // }
         public static List<string> createWatchersFromString(string watchers) {
             string[] watchersArry = watchers.Split('|');
             List<string> watchersList = new List<string>(watchersArry);

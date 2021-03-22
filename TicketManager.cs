@@ -11,15 +11,13 @@ namespace TicketingSystem
         public List<TaskTicket> taskTickets = new List<TaskTicket>();
         public List<EnhancementTicket> enhancementTickets = new List<EnhancementTicket>();
 
-        string fileName;
         string bugHeaders;
         string taskHeaders;
         string enhancementHeaders;
 
 
-        public TicketManager (string fileName)
+        public TicketManager ()
         {
-            this.fileName = fileName;
         }
 
         public void loadTicketsFromFile(string ticketType, string filename)
