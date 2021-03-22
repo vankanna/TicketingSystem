@@ -9,7 +9,7 @@ namespace TicketingSystem
     {
         public List<BugTicket> bugTickets = new List<BugTicket>();
         public List<TaskTicket> taskTickets = new List<TaskTicket>();
-        public List<EnhancementTicket> enhancmentTickets = new List<EnhancementTicket>();
+        public List<EnhancementTicket> enhancementTickets = new List<EnhancementTicket>();
 
         string fileName;
         string bugHeaders;
@@ -48,9 +48,9 @@ namespace TicketingSystem
                         if (ticketType == "bugTicket") {
                             BugTicket.createTicketFromFile(line);
                         } else if (ticketType == "taskTicket") {
-                            TaskTicket.createTicketFromFile(line)
+                            TaskTicket.createTicketFromFile(line);
                         } else if (ticketType == "enhancementTicket") {
-                            EnhancementTicket.createTicketFromFile(line)
+                            EnhancementTicket.createTicketFromFile(line);
                         } else {
 
                         }
@@ -65,37 +65,58 @@ namespace TicketingSystem
             }
         }
 
-        public void writeTicketsToFile()
+        public void writeTicketsToFile(string ticketType, string filename)
         {
+
             if (File.Exists(this.fileName))
             {
                 StreamWriter sw = new StreamWriter(this.fileName);
-                sw.WriteLine(this.headers);
-                foreach (var ticket in this.Tickets)
-                {
-                    sw.WriteLine(ticket.formatTicket());
+
+                if (ticketType == "bugTicket") {
+                    sw.WriteLine(this.bugHeaders);
+                    foreach (var ticket in this.bugTickets)
+                    {
+                        sw.WriteLine(ticket.formatTicket());
+                    }
+                } else if (ticketType == "taskTicket") {
+                    sw.WriteLine(this.taskHeaders);
+                    foreach (var ticket in this.taskTickets)
+                    {
+                        sw.WriteLine(ticket.formatTicket());
+                    }
+                } else if (ticketType == "enhancementTicket") {
+                    sw.WriteLine(this.enhancementHeaders);
+                    foreach (var ticket in this.enhancementTickets)
+                    {
+                        sw.WriteLine(ticket.formatTicket());
+                    }
+                } else {
+
                 }
+                
                 sw.Close();
             }
         }
 
-        public void listTickets() {
-            Console.WriteLine("\n" + this.headers);
-            foreach (var ticket in this.Tickets) {
-                        Console.WriteLine(ticket.formatTicket());
+        public void listTickets(string ticketType) {
+            if (ticketType == "bugTicket") {
+                Console.WriteLine("\n" + this.bugHeaders);
+                foreach (var ticket in this.bugTickets) {
+                    Console.WriteLine(ticket.formatTicket());
                 }
-        }
+            } else if (ticketType == "taskTicket") {
+                Console.WriteLine("\n" + this.taskHeaders);
+                foreach (var ticket in this.taskTickets) {
+                    Console.WriteLine(ticket.formatTicket());
+                }
+            } else if (ticketType == "enhancementTicket") {
+                Console.WriteLine("\n" + this.enhancementHeaders);
+                foreach (var ticket in this.enhancementTickets) {
+                    Console.WriteLine(ticket.formatTicket());
+                }
+            } else {
 
-       
-
-        public void createTicket() {
-            this.Tickets.Add(T.createTicket(this.Tickets[this.Tickets.Count - 1].ticketId + 1));
-        }
-
-        public List<string> createWatchersFromString(string watchers) {
-            string[] watchersArry = watchers.Split('|');
-            List<string> watchersList = new List<string>(watchersArry);
-            return watchersList;
+            }
         }
         
     }

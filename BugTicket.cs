@@ -55,5 +55,20 @@ namespace TicketingSystem
             return bugTicket;
         }
 
+        public static object createTicketFromFile(string line) {
+            BugTicket bugTicket = new BugTicket();
+            string[] fieldsArr = line.Split(',');
+
+            bugTicket.ticketId = Int32.Parse(fieldsArr[0]);
+            bugTicket.summary = fieldsArr[1];
+            bugTicket.status = fieldsArr[2];
+            bugTicket.priority = fieldsArr[3];
+            bugTicket.submitter = fieldsArr[4];
+            bugTicket.assigned = fieldsArr[5];
+            bugTicket.watchers = Ticket.createWatchersFromString(fieldsArr[6]);
+            bugTicket.severity = fieldsArr[7];
+            return bugTicket;
+        }
+
     }
 }

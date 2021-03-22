@@ -67,5 +67,21 @@ namespace TicketingSystem
 
             return enhancementTicket;
         }
+        public static object createTicketFromFile(string line) {
+            EnhancementTicket enhancementTicket = new EnhancementTicket();
+            string[] fieldsArr = line.Split(',');
+
+            enhancementTicket.ticketId = Int32.Parse(fieldsArr[0]);
+            enhancementTicket.summary = fieldsArr[1];
+            enhancementTicket.status = fieldsArr[2];
+            enhancementTicket.priority = fieldsArr[3];
+            enhancementTicket.submitter = fieldsArr[4];
+            enhancementTicket.assigned = fieldsArr[5];
+            enhancementTicket.watchers = Ticket.createWatchersFromString(fieldsArr[6]);
+            enhancementTicket.software = fieldsArr[7];
+            enhancementTicket.cost = Int32.Parse(fieldsArr[8]);
+            enhancementTicket.reason = fieldsArr[9];
+            return enhancementTicket;
+        }
     }
 }

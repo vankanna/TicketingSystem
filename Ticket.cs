@@ -42,7 +42,7 @@ namespace TicketingSystem
             
             return new object();
         }
-        public List<string> createWatchersFromString(string watchers) {
+        public static List<string> createWatchersFromString(string watchers) {
             string[] watchersArry = watchers.Split('|');
             List<string> watchersList = new List<string>(watchersArry);
             return watchersList;
