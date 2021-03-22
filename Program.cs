@@ -24,13 +24,13 @@ namespace TicketingSystem
                 Console.WriteLine("Please Select Type Of Ticket To Manage\n 1 - Bug Tickets\n 2 - Task Tickets\n 3 - Enhancement Tickets");
                 string typeChoice = Console.ReadLine();
                 if (typeChoice == "1") {
-                    typeSelected = "bug";
+                    typeSelected = "bugTicket";
                     filename = "bugTickets.csv";
                 } else if (typeChoice == "2") {
-                    typeSelected = "task";
+                    typeSelected = "taskTicket";
                     filename = "taskTickets.csv";
                 } else if (typeChoice == "3") {
-                    typeSelected = "enhancements";
+                    typeSelected = "enhancementTicket";
                     filename = "enhancementTickets.csv";
                 } else {
                     typeSelected = "exit";
@@ -55,12 +55,16 @@ namespace TicketingSystem
                         if (typeSelected == "bugTicket") {
                             int id = manager.bugTickets[manager.bugTickets.Count - 1].ticketId + 1;
                             manager.bugTickets.Add(BugTicket.createTicket(id));
+                            manager.writeTicketsToFile("bugTicket", "bugTickets.csv");
                         } else if (typeSelected == "taskTicket") {
                             int id = manager.taskTickets[manager.taskTickets.Count - 1].ticketId + 1;
                             manager.taskTickets.Add(TaskTicket.createTicket(id));
+                            manager.writeTicketsToFile("taskTicket", "taskTickets.csv");
                         } else if (typeSelected == "enhancementTicket") {
                             int id = manager.enhancementTickets[manager.enhancementTickets.Count - 1].ticketId + 1;
                             manager.enhancementTickets.Add(EnhancementTicket.createTicket(id));
+                            manager.writeTicketsToFile("enhancementTicket", "enhancementTickets.csv");
+
                         }
                         manager.writeTicketsToFile(typeSelected, filename);
 

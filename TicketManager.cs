@@ -38,17 +38,15 @@ namespace TicketingSystem
                             this.taskHeaders = line;
                         } else if (ticketType == "enhancementTicket") {
                             this.enhancementHeaders = line;
-                        } else {
-
                         }
                         firstLine = false;
                     } else {                        
                         if (ticketType == "bugTicket") {
-                            BugTicket.createTicketFromFile(line);
+                            this.bugTickets.Add(BugTicket.createTicketFromFile(line));
                         } else if (ticketType == "taskTicket") {
-                            TaskTicket.createTicketFromFile(line);
+                            this.taskTickets.Add(TaskTicket.createTicketFromFile(line));
                         } else if (ticketType == "enhancementTicket") {
-                            EnhancementTicket.createTicketFromFile(line);
+                            this.enhancementTickets.Add(EnhancementTicket.createTicketFromFile(line));
                         } else {
 
                         }
@@ -59,16 +57,16 @@ namespace TicketingSystem
             }
             else
             {
-                Console.WriteLine("File does not exist");
+                Console.WriteLine("File does not exist" + filename);
             }
         }
 
         public void writeTicketsToFile(string ticketType, string filename)
         {
 
-            if (File.Exists(this.fileName))
+            if (File.Exists(filename))
             {
-                StreamWriter sw = new StreamWriter(this.fileName);
+                StreamWriter sw = new StreamWriter(filename);
 
                 if (ticketType == "bugTicket") {
                     sw.WriteLine(this.bugHeaders);

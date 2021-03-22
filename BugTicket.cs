@@ -55,7 +55,7 @@ namespace TicketingSystem
             return bugTicket;
         }
 
-        public static object createTicketFromFile(string line) {
+        public static BugTicket createTicketFromFile(string line) {
             BugTicket bugTicket = new BugTicket();
             string[] fieldsArr = line.Split(',');
 

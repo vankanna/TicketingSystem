@@ -8,7 +8,7 @@ namespace TicketingSystem
 
     {
         public string software {get; set;}
-        public int cost {get; set;} 
+        public Double cost {get; set;} 
         public string reason {get; set;}
         public string estimate {get; set;}
 
@@ -50,7 +50,7 @@ namespace TicketingSystem
             Console.WriteLine("Enter software");                        
             string software = Console.ReadLine();
             Console.WriteLine("Enter the cost");                        
-            int cost = Int32.Parse(Console.ReadLine());
+            Double cost = Double.Parse(Console.ReadLine());
             Console.WriteLine("Enter a reason");                        
             string reason = Console.ReadLine();
             EnhancementTicket enhancementTicket = new EnhancementTicket();
@@ -67,7 +67,7 @@ namespace TicketingSystem
 
             return enhancementTicket;
         }
-        public static object createTicketFromFile(string line) {
+        public static EnhancementTicket createTicketFromFile(string line) {
             EnhancementTicket enhancementTicket = new EnhancementTicket();
             string[] fieldsArr = line.Split(',');
 
@@ -79,7 +79,7 @@ namespace TicketingSystem
             enhancementTicket.assigned = fieldsArr[5];
             enhancementTicket.watchers = Ticket.createWatchersFromString(fieldsArr[6]);
             enhancementTicket.software = fieldsArr[7];
-            enhancementTicket.cost = Int32.Parse(fieldsArr[8]);
+            enhancementTicket.cost = Double.Parse(fieldsArr[8]);
             enhancementTicket.reason = fieldsArr[9];
             return enhancementTicket;
         }

@@ -60,7 +60,7 @@ namespace TicketingSystem
             return taskTicket;
         }
 
-        public static object createTicketFromFile(string line) {
+        public static TaskTicket createTicketFromFile(string line) {
             TaskTicket taskTicket = new TaskTicket();
             string[] fieldsArr = line.Split(',');
 
@@ -72,7 +72,7 @@ namespace TicketingSystem
             taskTicket.assigned = fieldsArr[5];
             taskTicket.watchers = Ticket.createWatchersFromString(fieldsArr[6]);
             taskTicket.projectName = fieldsArr[7];
-            taskTicket.dueDate = DateTime.Parse(fieldsArr[7]);
+            taskTicket.dueDate = DateTime.Parse(fieldsArr[8]);
             return taskTicket;
         }
 
