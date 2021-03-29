@@ -1,161 +1,27 @@
-using System;
-using System.IO;
-using System.Collections.Generic;
-
-
 namespace TicketingSystem
 {
-    public class TicketManager
+    public abstract class TicketManager
     {
-        public List<BugTicket> bugTickets = new List<BugTicket>();
-        public List<TaskTicket> taskTickets = new List<TaskTicket>();
-        public List<EnhancementTicket> enhancementTickets = new List<EnhancementTicket>();
-
-        string bugHeaders;
-        string taskHeaders;
-        string enhancementHeaders;
-
+   
 
         public TicketManager ()
         {
         }
 
-        public void loadTicketsFromFile(string ticketType, string filename)
+        public void loadTicketsFromFile()
         {
-            if (File.Exists(filename))
-            {
-                StreamReader sr1 = new StreamReader(filename);
-                Boolean firstLine = true;
-                while (!sr1.EndOfStream)
-                {
-
-                    string line = sr1.ReadLine();
-                    if(firstLine) {
-
-                        if (ticketType == "bugTicket") {
-                            this.bugHeaders = line;
-                        } else if (ticketType == "taskTicket") {
-                            this.taskHeaders = line;
-                        } else if (ticketType == "enhancementTicket") {
-                            this.enhancementHeaders = line;
-                        }
-                        firstLine = false;
-                    } else {                        
-                        if (ticketType == "bugTicket") {
-                            this.bugTickets.Add(BugTicket.createTicketFromFile(line));
-                        } else if (ticketType == "taskTicket") {
-                            this.taskTickets.Add(TaskTicket.createTicketFromFile(line));
-                        } else if (ticketType == "enhancementTicket") {
-                            this.enhancementTickets.Add(EnhancementTicket.createTicketFromFile(line));
-                        } else {
-
-                        }
-                        //this.tickets.Add();
-                    }
-                }
-                sr1.Close();
-            }
-            else
-            {
-                Console.WriteLine("File does not exist" + filename);
-            }
         }
 
-        public void writeTicketsToFile(string ticketType, string filename)
+        public void writeTicketsToFile()
         {
-
-            if (File.Exists(filename))
-            {
-                StreamWriter sw = new StreamWriter(filename);
-
-                if (ticketType == "bugTicket") {
-                    sw.WriteLine(this.bugHeaders);
-                    foreach (var ticket in this.bugTickets)
-                    {
-                        sw.WriteLine(ticket.formatTicket());
-                    }
-                } else if (ticketType == "taskTicket") {
-                    sw.WriteLine(this.taskHeaders);
-                    foreach (var ticket in this.taskTickets)
-                    {
-                        sw.WriteLine(ticket.formatTicket());
-                    }
-                } else if (ticketType == "enhancementTicket") {
-                    sw.WriteLine(this.enhancementHeaders);
-                    foreach (var ticket in this.enhancementTickets)
-                    {
-                        sw.WriteLine(ticket.formatTicket());
-                    }
-                } else {
-
-                }
-                
-                sw.Close();
-            }
         }
 
-        public void listTickets(string ticketType) {
-            if (ticketType == "bugTicket") {
-                Console.WriteLine("\n" + this.bugHeaders);
-                foreach (var ticket in this.bugTickets) {
-                    Console.WriteLine(ticket.formatTicket());
-                }
-            } else if (ticketType == "taskTicket") {
-                Console.WriteLine("\n" + this.taskHeaders);
-                foreach (var ticket in this.taskTickets) {
-                    Console.WriteLine(ticket.formatTicket());
-                }
-            } else if (ticketType == "enhancementTicket") {
-                Console.WriteLine("\n" + this.enhancementHeaders);
-                foreach (var ticket in this.enhancementTickets) {
-                    Console.WriteLine(ticket.formatTicket());
-                }
-            } else {
-
-            }
+        public void listTickets()
+        {
         }
 
-        public void searchTickets(string ticketType) {
-            // ask what to search
-            Console.WriteLine("What category would you like to search?\n 1) Status\n 2) Priority\n 3) Submitter");
-            string category = Console.ReadLine();
-            var ticketsFound;
-            if (ticketType == "bugTicket") {
-                if(category == "1") {
-                    ticketsFound = this.bugTickets.Where(t -> t.Status.Contains(searchCriteria))
-
-                } else if (category == "2") {
-
-                } else if (category == "3") {
-
-                }
-            } else if (ticketType == "taskTicket") {
-                if(category == "1") {
-
-                } else if (category == "2") {
-
-                } else if (category == "3") {
-
-                }
-            } else if (ticketType == "enhancementTicket") {
-                if(category == "1") {
-
-                } else if (category == "2") {
-
-                } else if (category == "3") {
-
-                }
-            } else {
-
-            }
-
-            var moviesFound = this.Movies.Where(m => m.title.Contains(searchCriteria));
-            Console.WriteLine(moviesFound.Count() + " Matches Found");
-            foreach(Movie m in moviesFound)
-            {
-                Console.WriteLine($" - {m.title}");
-            }
-            
+        public void searchTickets()
+        {
         }
 
         

@@ -9,15 +9,14 @@ namespace TicketingSystem
         static void Main(string[] args)
         {
             
-            TicketManager manager = new TicketManager();
-            manager.loadTicketsFromFile("bugTicket", "bugTickets.csv");
-            manager.loadTicketsFromFile("taskTicket", "taskTickets.csv");
-            manager.loadTicketsFromFile("enhancementTicket", "enhancementTickets.csv");
+            BugTicketManager bugManager = new BugTicketManager("bugTickets.csv");
+            TaskTicketManager taskManager = new TaskTicketManager("taskTickets.csv");
+            EnhancementTicketManager enhancementManager = new EnhancementTicketManager("enhancementTickets.csv");
+            bugManager.loadTicketsFromFile();
+            taskManager.loadTicketsFromFile();
+            enhancementManager.loadTicketsFromFile();
 
-
-            string typeSelected = "";
-            string filename = "";
-
+            string typeSelected;
             do 
             {
 
@@ -25,13 +24,10 @@ namespace TicketingSystem
                 string typeChoice = Console.ReadLine();
                 if (typeChoice == "1") {
                     typeSelected = "bugTicket";
-                    filename = "bugTickets.csv";
                 } else if (typeChoice == "2") {
                     typeSelected = "taskTicket";
-                    filename = "taskTickets.csv";
                 } else if (typeChoice == "3") {
                     typeSelected = "enhancementTicket";
-                    filename = "enhancementTickets.csv";
                 } else {
                     typeSelected = "no Choice";
                 }
@@ -43,36 +39,48 @@ namespace TicketingSystem
                         // ask user a question
                         Console.WriteLine("\n1) List Tickets From File.");
                         Console.WriteLine("2) Create New Ticket And Write To File.");
+                        Console.WriteLine("3) Search Tickets");
                         Console.WriteLine("Enter any other key to exit.");
                         // input response
                         choice = Console.ReadLine();
 
                         if (choice == "1")
                         {
-                            manager.listTickets(typeSelected);
+                            if (typeSelected == "bugTicket") {
+                                bugManager.listTickets();
+                            } else if (typeSelected == "taskTicket") {
+                                taskManager.listTickets();
+                            } else if (typeSelected == "enhancementTicket") {
+                                enhancementManager.listTickets();
+                            }
                             
                         } else if (choice == "2")
                         {
                             if (typeSelected == "bugTicket") {
-                                int id = manager.bugTickets[manager.bugTickets.Count - 1].ticketId + 1;
-                                manager.bugTickets.Add(BugTicket.createTicket(id));
-                                manager.writeTicketsToFile("bugTicket", "bugTickets.csv");
+                                int id = bugManager.bugTickets[bugManager.bugTickets.Count - 1].ticketId + 1;
+                                bugManager.bugTickets.Add(BugTicket.createTicket(id));
+                                bugManager.writeTicketsToFile();
                             } else if (typeSelected == "taskTicket") {
-                                int id = manager.taskTickets[manager.taskTickets.Count - 1].ticketId + 1;
-                                manager.taskTickets.Add(TaskTicket.createTicket(id));
-                                manager.writeTicketsToFile("taskTicket", "taskTickets.csv");
+                                int id = taskManager.taskTickets[taskManager.taskTickets.Count - 1].ticketId + 1;
+                                taskManager.taskTickets.Add(TaskTicket.createTicket(id));
+                                taskManager.writeTicketsToFile();
                             } else if (typeSelected == "enhancementTicket") {
-                                int id = manager.enhancementTickets[manager.enhancementTickets.Count - 1].ticketId + 1;
-                                manager.enhancementTickets.Add(EnhancementTicket.createTicket(id));
-                                manager.writeTicketsToFile("enhancementTicket", "enhancementTickets.csv");
-
+                                int id = enhancementManager.enhancementTickets[enhancementManager.enhancementTickets.Count - 1].ticketId + 1;
+                                enhancementManager.enhancementTickets.Add(EnhancementTicket.createTicket(id));
+                                enhancementManager.writeTicketsToFile();
                             }
-                            manager.writeTicketsToFile(typeSelected, filename);
-
+                        } else if (choice == "3") {
+                            if (typeSelected == "bugTicket") {
+                                bugManager.searchTickets();
+                            } else if (typeSelected == "taskTicket") {
+                                taskManager.searchTickets();
+                            } else if (typeSelected == "enhancementTicket") {
+                                enhancementManager.searchTickets();
+                            }
                         } else {
                             typeSelected = "";
                         }
-                    } while (choice == "1" || choice == "2");
+                    } while (choice == "1" || choice == "2" || choice == "3");
                 } else {
                     Console.WriteLine("Please Make a Valid Choice");
                     typeSelected = "";

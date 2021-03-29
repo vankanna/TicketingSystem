@@ -7,22 +7,23 @@ using System.Linq;
 
 namespace TicketingSystem
 {
-    public class EnhancementTicketManager
+    public class EnhancementTicketManager : TicketManager
     {
         public List<EnhancementTicket> enhancementTickets = new List<EnhancementTicket>();
         string filename;
         string enhancementHeaders;
    
 
-        public EnhancementTicketManager ()
+        public EnhancementTicketManager (string filename)
         {
+            this.filename = filename;
         }
 
-        public void loadTicketsFromFile(string filename)
+        public void loadTicketsFromFile()
         {
-            if (File.Exists(filename))
+            if (File.Exists(this.filename))
             {
-                StreamReader sr1 = new StreamReader(filename);
+                StreamReader sr1 = new StreamReader(this.filename);
                 Boolean firstLine = true;
                 while (!sr1.EndOfStream)
                 {
@@ -38,15 +39,15 @@ namespace TicketingSystem
             }
             else
             {
-                Console.WriteLine("File does not exist" + filename);
+                Console.WriteLine("File does not exist" + this.filename);
             }
         }
 
-        public void writeTicketsToFile(string ticketType, string filename)
+        public void writeTicketsToFile()
         {
-            if (File.Exists(filename))
+            if (File.Exists(this.filename))
             {
-                StreamWriter sw = new StreamWriter(filename);
+                StreamWriter sw = new StreamWriter(this.filename);
                 sw.WriteLine(this.enhancementHeaders);
                 foreach (var ticket in this.enhancementTickets)
                 {
@@ -56,14 +57,14 @@ namespace TicketingSystem
             }
         }
 
-        public void listTickets(string ticketType) {
+        public void listTickets() {
             Console.WriteLine("\n" + this.enhancementHeaders);
             foreach (var ticket in this.enhancementTickets) {
                 Console.WriteLine(ticket.formatTicket());
             }
         }
 
-        public void searchTickets(string ticketType) {
+        public void searchTickets() {
             // ask what to search
             Console.WriteLine("What category would you like to search?\n 1) Status\n 2) Priority\n 3) Submitter");
             string category = Console.ReadLine();

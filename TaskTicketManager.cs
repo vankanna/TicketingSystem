@@ -7,22 +7,23 @@ using System.Linq;
 
 namespace TicketingSystem
 {
-    public class TaskTicketManager
+    public class TaskTicketManager : TicketManager
     {
         public List<TaskTicket> taskTickets = new List<TaskTicket>();
         string filename;
         string taskHeaders;
    
 
-        public TaskTicketManager ()
+        public TaskTicketManager (string filename)
         {
+            this.filename = filename;
         }
 
-        public void loadTicketsFromFile(string filename)
+        public void loadTicketsFromFile()
         {
-            if (File.Exists(filename))
+            if (File.Exists(this.filename))
             {
-                StreamReader sr1 = new StreamReader(filename);
+                StreamReader sr1 = new StreamReader(this.filename);
                 Boolean firstLine = true;
                 while (!sr1.EndOfStream)
                 {
@@ -38,15 +39,15 @@ namespace TicketingSystem
             }
             else
             {
-                Console.WriteLine("File does not exist" + filename);
+                Console.WriteLine("File does not exist" + this.filename);
             }
         }
 
-        public void writeTicketsToFile(string ticketType, string filename)
+        public void writeTicketsToFile()
         {
-            if (File.Exists(filename))
+            if (File.Exists(this.filename))
             {
-                StreamWriter sw = new StreamWriter(filename);
+                StreamWriter sw = new StreamWriter(this.filename);
                 sw.WriteLine(this.taskHeaders);
                 foreach (var ticket in this.taskTickets)
                 {
@@ -56,14 +57,14 @@ namespace TicketingSystem
             }
         }
 
-        public void listTickets(string ticketType) {
+        public void listTickets() {
             Console.WriteLine("\n" + this.taskHeaders);
             foreach (var ticket in this.taskTickets) {
                 Console.WriteLine(ticket.formatTicket());
             }
         }
 
-        public void searchTickets(string ticketType) {
+        public void searchTickets() {
             // ask what to search
             Console.WriteLine("What category would you like to search?\n 1) Status\n 2) Priority\n 3) Submitter");
             string category = Console.ReadLine();
@@ -85,7 +86,7 @@ namespace TicketingSystem
             });
 
             Console.WriteLine(ticketsFound.Count() + " Matches Found");
-            foreach(BugTicket t in ticketsFound)
+            foreach(TaskTicket t in ticketsFound)
             {
                 Console.WriteLine($" - {t.formatTicket()}");
             }
