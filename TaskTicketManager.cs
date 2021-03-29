@@ -7,14 +7,14 @@ using System.Linq;
 
 namespace TicketingSystem
 {
-    public class BugTicketManager
+    public class TaskTicketManager
     {
-        public List<BugTicket> bugTickets = new List<BugTicket>();
+        public List<TaskTicket> taskTickets = new List<TaskTicket>();
         string filename;
-        string bugHeaders;
+        string taskHeaders;
    
 
-        public BugTicketManager ()
+        public TaskTicketManager ()
         {
         }
 
@@ -28,10 +28,10 @@ namespace TicketingSystem
                 {
                     string line = sr1.ReadLine();
                     if(firstLine) {
-                        this.bugHeaders = line;
+                        this.taskHeaders = line;
                         firstLine = false;
                     } else {                        
-                        this.bugTickets.Add(BugTicket.createTicketFromFile(line));
+                        this.taskTickets.Add(TaskTicket.createTicketFromFile(line));
                     }
                 }
                 sr1.Close();
@@ -47,8 +47,8 @@ namespace TicketingSystem
             if (File.Exists(filename))
             {
                 StreamWriter sw = new StreamWriter(filename);
-                sw.WriteLine(this.bugHeaders);
-                foreach (var ticket in this.bugTickets)
+                sw.WriteLine(this.taskHeaders);
+                foreach (var ticket in this.taskTickets)
                 {
                     sw.WriteLine(ticket.formatTicket());
                 }
@@ -57,8 +57,8 @@ namespace TicketingSystem
         }
 
         public void listTickets(string ticketType) {
-            Console.WriteLine("\n" + this.bugHeaders);
-            foreach (var ticket in this.bugTickets) {
+            Console.WriteLine("\n" + this.taskHeaders);
+            foreach (var ticket in this.taskTickets) {
                 Console.WriteLine(ticket.formatTicket());
             }
         }
@@ -70,7 +70,7 @@ namespace TicketingSystem
             Console.WriteLine("Please Enter Your Search Criteria");
             string searchCriteria = Console.ReadLine();
 
-            var ticketsFound = this.bugTickets.Where((t) => {
+            var ticketsFound = this.taskTickets.Where((t) => {
                 
                 if(category == "1") {
                     return t.status.Contains(searchCriteria);
