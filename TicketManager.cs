@@ -114,6 +114,51 @@ namespace TicketingSystem
 
             }
         }
+
+        public void searchTickets(string ticketType) {
+            // ask what to search
+            Console.WriteLine("What category would you like to search?\n 1) Status\n 2) Priority\n 3) Submitter");
+            string category = Console.ReadLine();
+            var ticketsFound;
+            if (ticketType == "bugTicket") {
+                if(category == "1") {
+                    ticketsFound = this.bugTickets.Where(t -> t.Status.Contains(searchCriteria))
+
+                } else if (category == "2") {
+
+                } else if (category == "3") {
+
+                }
+            } else if (ticketType == "taskTicket") {
+                if(category == "1") {
+
+                } else if (category == "2") {
+
+                } else if (category == "3") {
+
+                }
+            } else if (ticketType == "enhancementTicket") {
+                if(category == "1") {
+
+                } else if (category == "2") {
+
+                } else if (category == "3") {
+
+                }
+            } else {
+
+            }
+
+            var moviesFound = this.Movies.Where(m => m.title.Contains(searchCriteria));
+            Console.WriteLine(moviesFound.Count() + " Matches Found");
+            foreach(Movie m in moviesFound)
+            {
+                Console.WriteLine($" - {m.title}");
+            }
+            
+        }
+
+        
         
     }
 
